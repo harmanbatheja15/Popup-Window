@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Popup Window</title>
+	
+	<style>
+		
+		* {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+		}
+
+		body {
+			width: 100%;
+			height: 100vh;
+		}
+
+		section {
+			background: url('https://cdn.pixabay.com/photo/2015/02/24/15/41/dog-647528__340.jpg');
+			background-size: 100% 100%;
+			width: 100%;
+			height: 100vh;
+			transition: 2s;
+		}
+
+		.center {
+			display: flex;
+			flex-direction: column;
+			height: 100vh;
+			width: 100%;
+			justify-content: center;
+			align-items: center;
+		} 
+
+		h1 {
+			margin-bottom: 1rem;
+			color: #fff;
+		}
+
+		button {
+			padding: 0.7rem 2rem;
+			border-radius: 100px;
+			background: blueviolet;
+			color: #fff;
+			outline: none;
+			border: none;
+			font-size: 1.3rem;
+			transition: background 0.5s;
+		}
+
+		button:hover {
+			background: grey;
+			cursor: pointer;
+		}
+
+		.modal-parent {
+			position: fixed;
+			top: 0;
+			left: 0;
+			height: 100vh;
+			width: 100%;
+			display: none;
+		}
+
+		.modal {
+			background: #fff;
+			width: 70%;
+			padding: 30px;
+			border-radius: 6px;
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			font-size: 22px;
+			animation: 1s drop;
+		}
+
+		@keyframes drop {
+			0% {
+				top: -100px;
+			}
+
+			100% {
+				top: 50%;
+			}
+		}
+
+		.X {
+			position: absolute;
+			right: 20px;
+			top: 5px;
+			font-size: 40px;
+			cursor: pointer;
+			font-weight: 600;
+		}
+
+	</style>
+
+</head>
+<body>
+
+	<section>
+		<div class="center">
+			<h1>Click the button below to pop up a Window!</h1>
+			<button type="button">Click For Popup Window</button>
+		</div>
+	</section>
+
+	<div class="modal-parent">
+		<div class="modal">
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium option explicabo repellendus, illum velit beatae aut enim distinctio ipsam ducimus. Dolor veritatis cum quibusdam ab, voluptatibus cupiditate accusamus quos iusto!Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium optio explicabo repellendus, illum velit beatae aut enim distinctio ipsam ducimus. Dolor veritatis cum quibusdam ab, voluptatibus cupiditate accusamus quos iusto!Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium optio explicabo repellendus, illum velit beatae aut enim distinctio ipsam ducimus. Dolor veritatis cum quibusdam ab, voluptatibus cupiditate accusamus quos iusto!Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium optio explicabo repellendus, illum velit beatae aut enim distinctio ipsam ducimus. Dolor veritatis cum quibusdam ab, voluptatibus cupiditate accusamus quos iusto!Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium option explicabo repellendus, illum velit beatae aut enim distinctio ipsam ducimus. Dolor veritatis cum quibusdam ab, voluptatibus cupiditate accusamus quos iusto!Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium option explicabo repellendus, illum velit beatae aut enim distinctio ipsam ducimus. Dolor veritatis cum quibusdam ab, voluptatibus cupiditate accusamus quos iusto!</p>
+			<span class="X" draggable="true">&times;</span>
+		</div>
+	</div>
+
+	<script>
+		
+			var parent = document.querySelector(".modal-parent");
+			var btn = document.querySelector("button");
+			var X = document.querySelector(".X");
+			var section = document.querySelector("section");
+			btn.addEventListener("click", appear);
+
+			function appear() {
+				parent.style.display = 'block';
+				section.style.filter = "blur(8px)";
+			}
+
+			X.addEventListener("click", disapperX);
+
+			function disapperX() {
+				parent.style.display = "none";
+				section.style.filter = "blur(0px)";
+				section.style.transition = "0.5s";
+			}
+			
+			parent.addEventListener("click", disappearParent);
+
+			function disappearParent(e) {
+				if (e.target.className == "modal-parent") {
+					parent.style.display = "none";
+					section.style.filter = "blur(0px)";
+					section.style.transition = "0.5s";
+				}
+			}
+
+
+	</script>
+	
+</body>
+</html>
